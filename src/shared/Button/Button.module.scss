@@ -1,0 +1,55 @@
+.button
+{
+   cursor: pointer;
+   user-select: none;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   padding: 2px 20px;
+
+   font-size: 16px;
+   font-weight: 600;
+   color: var(--color);
+
+   border-radius: 3px;
+   border: 1px solid var(--border);
+   background-color: var(--background);
+   transition: color .2s, background-color .2s, border .2s;
+
+   &:disabled
+   {
+      cursor: default;
+      opacity: .6;
+   }
+}
+
+/* < Темы кнопок > */
+.accent
+{
+   --color: #ffffff;
+   --background: #ea4c87;
+   --border: #ea4c87;
+
+   &:not(:disabled):hover,
+   &:not(:disabled):focus-visible
+   {
+      --background: #bb3667;
+      --border: #bb3667;
+   }
+}
+
+.unimportant
+{
+   --color: #ffffff;
+   --background: #3a4149;
+   --border: #3a4149;
+
+   &:not(:disabled):hover,
+   &:not(:disabled):focus-visible
+   {
+      --background: #363b41;
+      --border: #363b41;
+   }
+}

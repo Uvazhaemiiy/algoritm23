@@ -1,0 +1,48 @@
+:root {
+  --bg: #0b0f17;
+  --panel: #0f1624;
+  --panel-2: #111827;
+  --text: #e5e7eb;
+  --text-dim: #9ca3af;
+  --brand: #3b82f6;
+}
+
+html, body {
+  background: radial-gradient(1200px 800px at 10% -10%, rgba(59, 130, 246, .15), transparent 60%),
+              radial-gradient(1000px 700px at 110% 10%, rgba(168, 85, 247, .14), transparent 50%),
+              var(--bg);
+  color: var(--text);
+  overflow: hidden;
+  max-height: 100vh;
+}
+
+#root
+{
+   position: relative;
+   min-height: 100vh;
+
+   font-size: 16px;
+   font-weight: 400;
+   font-family: 'Nunito', sans-serif;
+   line-height: 1.5;
+   color: var(--text);
+}
+
+/* Cards and panels */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.06);
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white;
+  border-radius: 12px;
+  padding: 10px 16px;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(37, 99, 235, .25) }
+.btn-primary:active { transform: translateY(0) }
