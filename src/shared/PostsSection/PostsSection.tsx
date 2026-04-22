@@ -76,7 +76,7 @@ const PostsSection: FC = () => {
 
         {posts.length > 6 && (
           <div className="mt-6 text-center">
-            <button className="inline-flex items-center justify-center rounded-full bg-gray-600 px-7 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-gray-500">
+            <button className="inline-flex items-center justify-center rounded-full bg-gray-600 px-7 py-3 text-sm font-semibold text-white shadow-md ring-1 ring-gray-300/30 transition-colors duration-200 hover:bg-gray-500">
               Показать все новости
             </button>
           </div>

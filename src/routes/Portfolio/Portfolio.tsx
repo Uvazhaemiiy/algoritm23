@@ -1,289 +1,205 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { SidebarLayout } from 'layouts/SidebarLayout'
-import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
-import { CloudArrowUpIcon, ServerIcon } from '@heroicons/react/20/solid'
+import { EnvelopeIcon, PhoneIcon, TrophyIcon } from '@heroicons/react/24/outline'
+import Lightbox from 'yet-another-react-lightbox'
+import 'yet-another-react-lightbox/styles.css'
 
+const founderProjects = [
+  'ООО "ГК Клевер" - автоматизация бухгалтерского, финансового, управленческого и оперативного учета, сопровождение БИТ.Финанс + БИТ.Строительство.',
+  'ООО "Акцент" - автоматизация финансового и управленческого учета, сопровождение подсистем "Казначейство", "Бюджетирование", "Учет договоров и затрат".',
+  'ООО "УНР Инжиниринг" - сопровождение и запуск подсистем "Подрядчик", "Снабжение и склад", "Казначейство", "Бюджетирование".',
+  'ООО "БЕСТСИСТЕМ" - внедрение бухгалтерского и управленческого учета.',
+  'ООО "Юго-Запад Сервис" - внедрение БИТ.Финанс.',
+  'ООО СК "Вира" - внедрение БИТ.Финанс.',
+  'ООО ПСК "Континент" - комплексная автоматизация учета, зарплаты и кадров, сопровождение БИТ.Финанс + БИТ.Строительство.'
+]
 
+const doneProjects = [
+  'ООО "УНР Инжиниринг" - внедрение БИТ.Финанс: автоматизация подсистем "Казначейство", "Бюджетирование", сопровождение системы.',
+  'ООО "Экохолдинг" - внедрение 1С:Управление автотранспортом: учет автопарка, бюджетирование, расчет зарплаты, интеграция с мобильным приложением.',
+  'ООО "Тетра-М" - внедрение 1С:Бухгалтерия ПРОФ и 1С:УНФ, настройка учета, синхронизации и сопровождение.'
+]
 
-const AdditionalEducation: FC = () => (
-   <SidebarLayout>
-      <div className="bg-gray-900 pt-16 lg:py-14">
-      <div className="bg-gradient-to-t from-slate-800 via-black to-slate-900 pb-16 lg:relative lg:z-10 lg:pb-0">
-        <div className="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">
-          <div className="relative lg:-my-4 mx-auto">
-            <div aria-hidden="true" className="absolute inset-x-0 top-0 h-1/8 bg-white lg:hidden" />
-            <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:h-full lg:p-0">
-              <div className="aspect-w-10 aspect-h-6 overflow-hidden rounded-xl shadow-xl sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none lg:h-full">
+const activeProjects = [
+  'ООО "Реконструкция" - внедрение БИТ.Финанс + БИТ.Строительство: "Казначейство", "Бюджетирование", "Учет договоров и затрат", "Подрядчик", "Снабжение и склад".'
+]
+
+const Portfolio: FC = () => {
+  const [isImageOpen, setIsImageOpen] = useState(false)
+
+  return (
+    <SidebarLayout>
+      <div className="mx-auto w-full max-w-6xl space-y-6 py-2">
+      <section className="rounded-2xl bg-slate-900 px-5 py-10 sm:px-8 sm:py-12">
+        <div className="mx-auto max-w-5xl">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[.2em] text-blue-300">Портфолио и опыт</p>
+            <h1 className="mt-4 text-3xl font-extrabold text-white sm:text-4xl">Реальные проекты и подтвержденная экспертиза</h1>
+            <div className="mt-4">
+              <button
+                type="button"
+                className="float-left mr-4 mb-2 w-[100px] rounded-full border border-slate-700 bg-slate-800/60 p-1 transition-transform duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300"
+                onClick={() => setIsImageOpen(true)}
+                aria-label="Открыть фото основателя"
+              >
                 <img
-                  className="object-cover lg:h-full lg:w-full mt-2"
                   src="/images/eleonora.jpg"
-                  alt=""
+                  alt="Основатель компании"
+                  className="h-[100px] w-full rounded-full object-cover object-top"
                 />
-              </div>
+              </button>
+              <p className="text-base leading-7 text-slate-300">ООО «АЛГОРИТМ 23» - молодая быстро растущая компания по автоматизации учета на платформе 1С.</p>
             </div>
-          </div>
-          <div className="mt-12 lg:col-span-2 lg:m-0 lg:pl-8">
-            <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-10 lg:py-20">
-              <blockquote>
-                <div>
-                  <svg
-                    className="h-12 w-12 text-white opacity-25"
-                    fill="currentColor"
-                    viewBox="0 0 32 32"
-                    aria-hidden="true"
-                  >
-                    <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                  </svg>
-                  <p className="mt-6 text-2xl font-medium text-white">
-                  ООО «АЛГОРИТМ 23» — это молодая быстро растущая компания по автоматизации учета программных продуктов на платформе 1С.
-                  </p>
-                </div>
-                <footer className="mt-6">
-                  <p className="text-base font-bold text-white">Основатель компании: Арутюнян Элеонора Араратовна.</p>
-                  <p className="text-base font-medium text-indigo-100 mt-2">Опыт работы внедрения программных продуктов на платформе 1С с 2012 года. Опыт внедрения проектов с бюджетом более 150 млн. рублей федерального уровня с управлением командой внедрения и сопровождения более 40 человек.
-Опыт управления бизнесами в сферах торговли, beauty-индустрии, ресторанного бизнеса, строительного бизнеса.</p>
-                </footer>
-              </blockquote>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-   {/*   <p className="text-base font-medium text-indigo-100 mt-2">В настоящее время обучается коучу (наставничеству) и бизнес-тренерству по стандартам международной сертификации ICF.
-Прошла две ступени развития личности и управления командой. Сейчас проходит третью-лидерскую программу.</p>
-                  <p className="text-base font-medium text-indigo-100 mt-2">Сертификаты специалиста1С и БИТ.Финанс, БИТ.Строительство.</p>
-                  <p className="text-base font-medium text-indigo-100 mt-2">Диплом с отличием (средний бал 5.0).</p> 
-                  <p className="text-base font-medium text-indigo-100 mt-2">За период работы нет ни одного незавершонного проекта и ни одного недовольного Заказчика (можно получить обратную связь по всем компаниям).</p> 
-    {/* Blog feed - open */}
-    {/* Blog Feed - end */}
-    <div className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <svg
-          className="absolute left-[max(50%,25rem)] top-0 h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]"
-          aria-hidden="true"
-        >
-          <defs>
-            <pattern
-              id="e813992c-7d03-4cc4-a2bd-151760b470a0"
-              width={200}
-              height={200}
-              x="50%"
-              y={-1}
-              patternUnits="userSpaceOnUse"
-            >
-              <path d="M100 200V.5M.5 .5H200" fill="none" />
-            </pattern>
-          </defs>
-          <svg x="50%" y={-1} className="overflow-visible fill-gray-50">
-            <path
-              d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z"
-              strokeWidth={0}
-            />
-          </svg>
-          <rect width="100%" height="100%" strokeWidth={0} fill="url(#e813992c-7d03-4cc4-a2bd-151760b470a0)" />
-        </svg>
-      </div>
-      <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10">
-        <div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-          <div className="lg:pr-4">
-            <div className="lg:max-w-lg">
-              {/* <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Наши цели</h1> */}
-              <p className="mt-0 text-xl leading-8 text-gray-700">
-              В настоящее время Элеонора обучается коучингу (наставничеству) и бизнес-тренерству по стандартам международной сертификации ICF. Прошла две ступени развития личности и управления командой. Сейчас проходит третью-лидерскую программу.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
-          <img
-            className="w-[48rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]"
-            src="images/eyo2.jpg"
-            alt=""
-          />
-        </div>
-        <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-          <div className="lg:pr-4">
-            <div className="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
-              <p>
-              </p>
-              <ul className="mt-8 space-y-8 text-gray-600">
-                <li className="flex gap-x-3">
-                  <CloudArrowUpIcon className="mt-1 h-5 w-5 flex-none text-indigo-600" aria-hidden="true" />
-                  <span>
-                    <strong className="font-semibold text-gray-900">Сертификаты специалиста 1С и БИТ.Финанс, БИТ.Строительство</strong>
-                  </span>
-                </li>
-                {/* <li className="flex gap-x-3">
-                  <LockClosedIcon className="mt-1 h-5 w-5 flex-none text-indigo-600" aria-hidden="true" />
-                  <span>
-                    <strong className="font-semibold text-gray-900">Диплом с отличием (средний бал 5.0)</strong> Наша цель - качество
-                  </span>
-                </li> */}
-                <li className="flex gap-x-3">
-                  <ServerIcon className="mt-1 h-5 w-5 flex-none text-indigo-600" aria-hidden="true" />
-                  <span>
-                    <strong className="font-semibold text-gray-900">За период работы нет ни одного незавершенного проекта и ни одного недовольного Заказчика.</strong>
-                  </span>
-                </li>
-              </ul>
-              <h2 className="mt-16 text-2xl font-bold tracking-tight text-gray-900">Опыт внедрения проектов основателем компании:</h2>
-              <p className="mt-6">
-              1. ООО "ГК Клевер" (автоматизация бухгалтерского, финансового,
-управленческого, оперативного учета) сопровождение внедренного программного продукта БИТ.Финанс + БИТ.Строительство.
-Доработка конфигурации по автоматизации всех бизнес-процессов компании.
-Администрирование АРМ и оборудования офиса. Сопровождение.
-              </p>
-              <p className="mt-6">
-              2. ООО "Акцент" (автоматизация финансового, управленческого учета) сейчас сопровождение подсистем "Казначейство", "Бюджетирование", "Учет договоров и затрат".
-              </p>
-              <p className="mt-6">
-              3. ООО "УНР Инжиниринг" сопровождение, запущены подсистемы "Подрядчик" и "Снабжение и склад" (ПО БИТ.Строительство) и БИТ.Финанс «Казначейство» и «Бюджетирование».
-              </p>
-              <p className="mt-6">
-              4. ООО "БЕСТСИСТЕМ" внедрение бухгалтерского и управленческого учета.
-              </p>
-              <p className="mt-6">
-              5. ООО "Юго-Запад Сервис" внедрение БИТ.Финанс.
-              </p>
-              <p className="mt-6">
-              6. ООО СК "Вира" внедрение БИТ.Финанс.
-              </p>
-              <p className="mt-6">
-              7. ООО ПСК «Континент» (автоматизация бухгалтерского, финансового, управленческого, оперативного учета, расчета заработной платы и кадров) сопровождение внедренного программного продукта. БИТ.Финанс + БИТ.Строительство.</p><br /><br />
-
-              <h2 className="mt-16 text-2xl font-bold tracking-tight text-gray-900">Реализованные проекты</h2>
-              <p className="mt-6">1.	ООО «УНР Инжиниринг» – внедрение программного продукта БИТ.Финанс (Разработчик компания «Первый БИТ», программа разработана на платформе 1С на конфигурации 1С.Бухгалтерия предприятия ПРОФ.) 
-Выполнение работ на проекте: автоматизация финансового учета, в частности подсистем «Казначейство» (контроль движения денежных средств), «Бюджетирование» (контроль доходов и расходов, формирование план-фактного анализа, трансляция данных). Сопровождение внедренной информационной системы. </p>
-
-
-<p className="mt-6">
-2.	ООО «Экохолдинг» - внедрение программного продукта 1С.Управление автотранспортом (Разработчик компания 1С «Рарус»). 
-Выполнение работ на проекте: автоматизация учета автотранспорта, в том числе бюджетирование, автоматический расчет заработной платы сотрудников, интеграция с мобильным приложением «Водитель УАТ».  Сопровождение внедренной информационной системы. </p>
-
-<p className="mt-6">
-3. ООО «Тетра-М» - внедрение программных продуктов 1С.Бухгалтерия ПРОФ (Разработчик компания «1С»), 1С управление нашей фирмой (Разработчик компания «1С»).  
-Выполнение работ на проекте: Настройка ведения бухгалтерского, налогового, финансового и управленческого учета. Настройка синхронизации данных между системами. Сопровождение внедренных информационных систем. </p>
-
-<h2 className="mt-16 text-2xl font-bold tracking-tight text-gray-900">Активные проекты</h2>
-<p className="mt-6">ООО «Реконструкция» - внедрение программного продукта БИТ.Финанс+БИТ.Строительство (Разработчик компания «Первый БИТ», программа разработана на платформе 1С на конфигурации 1С.Бухгалтерия предприятия ПРОФ.)
-Выполнение работ на проекте: автоматизация финансового учета, в частности подсистем «Казначейство» (контроль движения денежных средств), «Бюджетирование» (контроль доходов и расходов, формирование план-фактного анализа), «Учет договоров и затрат» (контроль документооборота по договорам компании), «Подрядчик» (возможность  ведения учета по строительной специфике: учет ПБУ 2/2008, формирование документов КС-2, КС-3, КС-6, учет незавершенного производства, учет гарантийных удержаний и многое другое).
-и «Снабжение и склад» (контроль строительных материалов инструментов на объектах строительства и общих складах компании, согласно заданным сметам). </p>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-   
-    <div className="relative bg-white">
-      <div className="absolute inset-0">
-        <div className="absolute inset-y-0 left-0 w-1/2 bg-gray-50" />
-      </div>
-      <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5">
-        <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
-          <div className="mx-auto max-w-lg">
-            <h2 className="text-2xl font-bold tracking-tight text-sky-900 sm:text-3xl">Обратная связь</h2>
-            <p className="mt-3 text-lg leading-6 text-gray-500">
-              Если у Вас возникли вопросы, свяжитесь в нашим менеджером по форме обратной связи или по телефону.
+            <p className="mt-4 text-sm leading-6 text-slate-300">
+              Основатель: Арутюнян Элеонора Араратовна. Опыт внедрения программных продуктов 1С с 2012 года, управление федеральными
+              проектами с бюджетом 150+ млн рублей и командами внедрения/сопровождения 40+ человек.
             </p>
-            <dl className="mt-8 text-base text-gray-500">
-              <div>
-                <dt className="sr-only">Postal address</dt>
-                <dd>
-                  <p></p>
-              
-                </dd>
-              </div>
-              <div className="mt-6">
-                <dt className="sr-only">Контактный номер</dt>
-                <dd className="flex">
-                  <PhoneIcon className="h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                  <span className="ml-3">+7 (495) 414-23-53</span>
-                </dd>
-                <dd className="flex">
-                  <PhoneIcon className="h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                  <span className="ml-3">+7 (985) 355-93-69</span>
-                </dd>
-              </div>
-              <div className="mt-3">
-                <dt className="sr-only">Email</dt>
-                <dd className="flex">
-                  <EnvelopeIcon className="h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                  <span className="ml-3">info@algoritm23.net</span>
-                </dd>
-              </div>
-            </dl>
           </div>
         </div>
-        <div className="bg-gradient-to-t from-slate-800 via-black to-slate-900 py-16 px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
-          <div className="mx-auto max-w-lg lg:max-w-none">
-            <form action="#" method="POST" className="grid grid-cols-1 gap-y-6">
-              <div>
-                <label htmlFor="full-name" className="sr-only">
-                  Ф.И.О.
-                </label>
-                <input
-                  type="text"
-                  name="full-name"
-                  id="full-name"
-                  autoComplete="name"
-                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                  placeholder="Ф.И.О."
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="sr-only">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                  placeholder="Ваш Email"
-                />
-              </div>
-              <div>
-                <label htmlFor="phone" className="sr-only">
-                  Телефон
-                </label>
-                <input
-                  type="text"
-                  name="phone"
-                  id="phone"
-                  autoComplete="tel"
-                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                  placeholder="Контактный номер"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="sr-only">
-                  Написать сообщение
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                  placeholder="Написать сообщение"
-                  defaultValue={''}
-                />
-              </div>
-              <div>
-                <button
-                  type="submit"
-                  className="inline-flex justify-center rounded-md border border-transparent bg-gray-600 py-3 px-6 text-base font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                >
-                  Отправить
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-   </SidebarLayout>
-)
+      </section>
 
-export default AdditionalEducation
+      <section className="rounded-2xl border border-slate-700 bg-slate-900 px-5 py-8 sm:px-8 sm:py-10">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-2xl font-extrabold text-white sm:text-3xl">Профессиональные достижения</h2>
+          <p className="mt-3 text-sm leading-6 text-slate-300 sm:text-base">
+            Коучинг и бизнес-тренерство по стандартам ICF, профильные сертификаты и без незавершенных проектов.
+          </p>
+        </div>
+
+        <div className="mx-auto mt-6 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <article className="rounded-xl border border-slate-700 bg-slate-800 p-5">
+            <TrophyIcon className="h-6 w-6 text-blue-300" aria-hidden="true" />
+            <h3 className="mt-3 text-base font-bold text-white">Сертификаты</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-300">Сертификаты специалиста 1С и БИТ.Финанс, БИТ.Строительство.</p>
+          </article>
+          <article className="rounded-xl border border-slate-700 bg-slate-800 p-5">
+            <TrophyIcon className="h-6 w-6 text-blue-300" aria-hidden="true" />
+            <h3 className="mt-3 text-base font-bold text-white">Сильная репутация</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-300">За период работы нет незавершенных проектов и недовольных заказчиков.</p>
+          </article>
+          <article className="rounded-xl border border-slate-700 bg-slate-800 p-5">
+            <TrophyIcon className="h-6 w-6 text-blue-300" aria-hidden="true" />
+            <h3 className="mt-3 text-base font-bold text-white">Развитие экспертизы</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-300">
+              Обучение коучингу и бизнес-тренерству, пройдены две ступени развития личности и управления командой.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="mx-auto grid w-full max-w-5xl gap-5 lg:grid-cols-2">
+        <article className="rounded-2xl border border-slate-200 bg-slate-100 p-6 sm:p-7">
+          <h2 className="text-xl font-extrabold text-slate-800 sm:text-2xl">Опыт внедрения основателя</h2>
+          <ul className="mt-4 list-disc space-y-2.5 pl-5 text-sm leading-6 text-slate-700 marker:text-slate-700">
+            {founderProjects.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </article>
+
+        <article className="rounded-2xl bg-gradient-to-br from-slate-800 to-blue-800 p-6 sm:p-7 text-white">
+          <h2 className="text-xl font-extrabold sm:text-2xl">Реализованные и активные проекты</h2>
+
+          <h3 className="mt-4 text-base font-semibold text-white">Реализованные</h3>
+          <ul className="mt-2 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-200 marker:text-slate-200">
+            {doneProjects.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+
+          <h3 className="mt-5 text-base font-semibold text-white">Активные</h3>
+          <ul className="mt-2 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-200 marker:text-slate-200">
+            {activeProjects.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </article>
+      </section>
+
+      <section className="mx-auto grid w-full max-w-5xl gap-5 lg:grid-cols-2">
+        <article className="rounded-2xl border border-slate-200 bg-slate-100 p-6 sm:p-7">
+          <h2 className="text-xl font-extrabold text-slate-800 sm:text-2xl">Обратная связь</h2>
+          <p className="mt-3 text-sm leading-6 text-slate-700">
+            Если у вас возникли вопросы, свяжитесь с менеджером через форму обратной связи или по телефону.
+          </p>
+
+          <div className="mt-5 space-y-3 text-sm text-slate-700">
+            <p className="flex items-center gap-2">
+              <PhoneIcon className="h-5 w-5 text-slate-500" aria-hidden="true" />
+              <span>+7 (495) 790-53-23</span>
+            </p>
+            <p className="flex items-center gap-2">
+              <PhoneIcon className="h-5 w-5 text-slate-500" aria-hidden="true" />
+              <span>+7 (985) 355-93-69</span>
+            </p>
+            <p className="flex items-center gap-2">
+              <EnvelopeIcon className="h-5 w-5 text-slate-500" aria-hidden="true" />
+              <span>info@algoritm23.net</span>
+            </p>
+          </div>
+        </article>
+
+        <article className="rounded-2xl bg-gradient-to-br from-slate-800 to-blue-800 p-5 sm:p-6 text-white">
+          <h2 className="text-xl font-extrabold sm:text-2xl">Написать нам</h2>
+          <form action="https://formsubmit.co/info@algoritm23.net" method="POST" className="mt-4 grid grid-cols-1 gap-y-3">
+            <input type="hidden" name="_subject" value="Новая заявка с сайта algoritm23.net (Портфолио)" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value="https://algoritm23.net/portfolio?sent=1" />
+            <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
+            <input
+              type="text"
+              name="full-name"
+              autoComplete="name"
+              required
+              className="block w-full rounded-md border border-slate-500 bg-slate-900/60 py-2.5 px-3.5 text-sm text-white placeholder-slate-300 focus:border-gray-300 focus:ring-gray-300"
+              placeholder="Ф.И.О."
+            />
+            <input
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              className="block w-full rounded-md border border-slate-500 bg-slate-900/60 py-2.5 px-3.5 text-sm text-white placeholder-slate-300 focus:border-gray-300 focus:ring-gray-300"
+              placeholder="Ваш Email"
+            />
+            <input
+              type="text"
+              name="phone"
+              autoComplete="tel"
+              required
+              className="block w-full rounded-md border border-slate-500 bg-slate-900/60 py-2.5 px-3.5 text-sm text-white placeholder-slate-300 focus:border-gray-300 focus:ring-gray-300"
+              placeholder="Контактный номер"
+            />
+            <textarea
+              name="message"
+              rows={3}
+              required
+              className="block w-full rounded-md border border-slate-500 bg-slate-900/60 py-2.5 px-3.5 text-sm text-white placeholder-slate-300 focus:border-gray-300 focus:ring-gray-300"
+              placeholder="Написать сообщение"
+              defaultValue=""
+            />
+            <button
+              type="submit"
+              className="mt-1 inline-flex items-center justify-center rounded-full bg-gray-600 px-7 py-2.5 text-sm font-semibold text-white shadow-md ring-1 ring-gray-300/30 transition-colors duration-200 hover:bg-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-800"
+            >
+              Отправить
+            </button>
+            <p className="text-xs text-slate-300">
+              После отправки вы будете перенаправлены обратно на страницу портфолио.
+            </p>
+          </form>
+        </article>
+      </section>
+      </div>
+
+      <Lightbox
+        open={isImageOpen}
+        close={() => setIsImageOpen(false)}
+        slides={[{ src: '/images/eleonora.jpg', alt: 'Основатель компании' }]}
+      />
+    </SidebarLayout>
+  )
+}
+
+export default Portfolio
