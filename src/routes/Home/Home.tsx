@@ -175,7 +175,7 @@ const Home: FC = () => {
 
             <div className="rounded-xl border border-slate-700 bg-slate-800/60 p-3">
               <img
-                src="/images/stek.jpg"
+                src="/images/stek.JPG"
                 alt="Стек технологий"
                 className="h-64 w-full rounded-lg object-cover sm:h-72"
                 loading="lazy"

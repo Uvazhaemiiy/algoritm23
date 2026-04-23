@@ -1,8 +1,7 @@
 import { FC, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { SidebarLayout } from 'layouts/SidebarLayout'
 import { EnvelopeIcon, PhoneIcon, TrophyIcon } from '@heroicons/react/24/outline'
-import Lightbox from 'yet-another-react-lightbox'
-import 'yet-another-react-lightbox/styles.css'
 
 const founderProjects = [
   'ООО "ГК Клевер" - автоматизация бухгалтерского, финансового, управленческого и оперативного учета, сопровождение БИТ.Финанс + БИТ.Строительство.',
@@ -26,6 +25,73 @@ const activeProjects = [
 
 const Portfolio: FC = () => {
   const [isImageOpen, setIsImageOpen] = useState(false)
+  const imageModal =
+    isImageOpen && typeof document !== 'undefined'
+      ? createPortal(
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Фото основателя"
+            onClick={() => setIsImageOpen(false)}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 10000,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'rgba(0,0,0,0.72)',
+              padding: '16px'
+            }}
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                position: 'relative',
+                width: '100%',
+                maxWidth: '760px',
+                borderRadius: '14px',
+                overflow: 'hidden',
+                border: '1px solid rgba(148,163,184,.35)',
+                background: '#0f172a'
+              }}
+            >
+              <button
+                type="button"
+                onClick={() => setIsImageOpen(false)}
+                aria-label="Закрыть"
+                style={{
+                  position: 'absolute',
+                  top: '10px',
+                  right: '10px',
+                  zIndex: 2,
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '9999px',
+                  border: '1px solid rgba(148,163,184,.35)',
+                  background: 'rgba(15,23,42,.85)',
+                  color: '#fff',
+                  cursor: 'pointer'
+                }}
+              >
+                ×
+              </button>
+              <img
+                src="/images/eleonora.jpg"
+                alt="Основатель компании"
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  maxHeight: '80vh',
+                  objectFit: 'contain',
+                  background: '#0f172a'
+                }}
+              />
+            </div>
+          </div>,
+          document.body
+        )
+      : null
 
   return (
     <SidebarLayout>
@@ -193,11 +259,7 @@ const Portfolio: FC = () => {
       </section>
       </div>
 
-      <Lightbox
-        open={isImageOpen}
-        close={() => setIsImageOpen(false)}
-        slides={[{ src: '/images/eleonora.jpg', alt: 'Основатель компании' }]}
-      />
+      {imageModal}
     </SidebarLayout>
   )
 }
