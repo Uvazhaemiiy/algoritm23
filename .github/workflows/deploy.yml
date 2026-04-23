@@ -40,5 +40,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: build/
-          server-dir: ${{ secrets.FTP_DIR }}
+          server-dir: /www/algoritm23.net/
           dangerous-clean-slate: true
