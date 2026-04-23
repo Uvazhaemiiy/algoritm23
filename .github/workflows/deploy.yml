@@ -1,4 +1,4 @@
-name: Deploy to NetAngels
+name: Deploy via SSH
 
 on:
   push:
@@ -10,26 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Забрать код
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Установить Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Установить зависимости
-        run: npm ci
+      - run: npm ci
+      - run: npm run build
 
-      - name: Собрать проект
-        run: npm run build
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H h47.netangels.ru >> ~/.ssh/known_hosts
 
-      - name: Залить на NetAngels
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: build/
-          server-dir: ${{ secrets.FTP_DIR }}
-          dangerous-clean-slate: true
+      - name: Deploy
+        run: |
+          rsync -avz --delete build/ c83803@h47.netangels.ru:algoritm23.net/www/
