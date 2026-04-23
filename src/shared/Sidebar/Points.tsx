@@ -42,7 +42,7 @@ export const Points: FC = React.memo(() => (
          <SubPoint label="Особые предметы" to="/student-life" />
          <SubPoint label="Территории и земли" to="/accreditation" />
       </Category> */}
-      <Point ico="chart-line-solid" label="Портфолио" to="/portfolio" />
+      <Point ico="pen-to-square-solid" label="Портфолио" to="/portfolio" />
       <Point ico="settings" label="Услуги" to="/services" />
       <Point ico="chart" label="Стоимость оказания услуг" to="/pricing" />
       <Point ico="search" label="Каталог продуктов 1С" to="/catalog-1c" />

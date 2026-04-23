@@ -197,6 +197,17 @@ const Portfolio: FC = () => {
         open={isImageOpen}
         close={() => setIsImageOpen(false)}
         slides={[{ src: '/images/eleonora.jpg', alt: 'Основатель компании' }]}
+        carousel={{ padding: '24px' }}
+        styles={{
+          root: { '--yarl__color_backdrop': 'rgba(2, 6, 23, 0.82)' },
+          container: {
+            maxWidth: 'min(860px, 92vw)',
+            maxHeight: '88vh',
+            margin: '0 auto',
+            borderRadius: '14px',
+            overflow: 'hidden'
+          }
+        }}
       />
     </SidebarLayout>
   )
