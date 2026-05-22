@@ -24,12 +24,6 @@ export const routes: IRoutes[] = [
       Element: lazy(() => import('routes/Contacts'))
    },
    {
-      path: '/personal-cabinet',
-      title: 'Личный кабинет',
-      access: true,
-      Element: lazy(() => import('routes/PersonalCabinet'))
-   },
-   {
       path: '/services',
       title: 'Наши услуги',
       access: true,

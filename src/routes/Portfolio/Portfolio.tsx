@@ -1,5 +1,6 @@
 import { FC, useState } from 'react'
 import { SidebarLayout } from 'layouts/SidebarLayout'
+import { ContactForm } from 'shared/ContactForm'
 import { EnvelopeIcon, PhoneIcon, TrophyIcon } from '@heroicons/react/24/outline'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
@@ -141,54 +142,7 @@ const Portfolio: FC = () => {
 
         <article className="rounded-2xl bg-gradient-to-br from-slate-800 to-blue-800 p-5 sm:p-6 text-white">
           <h2 className="text-xl font-extrabold sm:text-2xl">Написать нам</h2>
-          <form action="https://formsubmit.co/info@algoritm23.net" method="POST" className="mt-4 grid grid-cols-1 gap-y-3">
-            <input type="hidden" name="_subject" value="Новая заявка с сайта algoritm23.net (Портфолио)" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="https://algoritm23.net/portfolio?sent=1" />
-            <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
-            <input
-              type="text"
-              name="full-name"
-              autoComplete="name"
-              required
-              className="block w-full rounded-md border border-slate-500 bg-slate-900/60 py-2.5 px-3.5 text-sm text-white placeholder-slate-300 focus:border-gray-300 focus:ring-gray-300"
-              placeholder="Ф.И.О."
-            />
-            <input
-              name="email"
-              type="email"
-              autoComplete="email"
-              required
-              className="block w-full rounded-md border border-slate-500 bg-slate-900/60 py-2.5 px-3.5 text-sm text-white placeholder-slate-300 focus:border-gray-300 focus:ring-gray-300"
-              placeholder="Ваш Email"
-            />
-            <input
-              type="text"
-              name="phone"
-              autoComplete="tel"
-              required
-              className="block w-full rounded-md border border-slate-500 bg-slate-900/60 py-2.5 px-3.5 text-sm text-white placeholder-slate-300 focus:border-gray-300 focus:ring-gray-300"
-              placeholder="Контактный номер"
-            />
-            <textarea
-              name="message"
-              rows={3}
-              required
-              className="block w-full rounded-md border border-slate-500 bg-slate-900/60 py-2.5 px-3.5 text-sm text-white placeholder-slate-300 focus:border-gray-300 focus:ring-gray-300"
-              placeholder="Написать сообщение"
-              defaultValue=""
-            />
-            <button
-              type="submit"
-              className="mt-1 inline-flex items-center justify-center rounded-full bg-gray-600 px-7 py-2.5 text-sm font-semibold text-white shadow-md ring-1 ring-gray-300/30 transition-colors duration-200 hover:bg-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-800"
-            >
-              Отправить
-            </button>
-            <p className="text-xs text-slate-300">
-              После отправки вы будете перенаправлены обратно на страницу портфолио.
-            </p>
-          </form>
+          <ContactForm subject="Новая заявка с сайта algoritm23.net (Портфолио)" />
         </article>
       </section>
       </div>

@@ -1,6 +1,12 @@
 Options -MultiViews
 DirectoryIndex index.html
 
+<IfModule mod_proxy.c>
+  ProxyPreserveHost On
+  ProxyPass /api http://127.0.0.1:3001/api
+  ProxyPassReverse /api http://127.0.0.1:3001/api
+</IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /

@@ -16,7 +16,7 @@ const models = [
   },
   {
     name: 'Абонентское сопровождение',
-    price: 'от 3 000 ₽ / час',
+    price: 'от 3 900 ₽ / час',
     description: 'Для компаний с регулярным объемом задач после запуска проекта от 1 млн ₽.',
     points: ['Льготная ставка', 'Приоритетная линия поддержки', 'Постоянное развитие системы']
   }
@@ -28,7 +28,7 @@ const Pricing: FC = () => (
       <section className="rounded-2xl bg-slate-900 px-5 py-10 sm:px-8 sm:py-12">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[.2em] text-blue-300">Форматы сотрудничества</p>
-          <h1 className="mt-4 text-3xl font-extrabold text-white sm:text-4xl">Стоимость услуг Algoritm 23</h1>
+          <h1 className="mt-4 text-3xl font-extrabold text-white sm:text-4xl">Стоимость услуг</h1>
           <p className="mt-4 text-base leading-7 text-slate-300">
             Выбирайте модель, которая соответствует вашему этапу развития: от быстрых задач до комплексного внедрения.
           </p>
