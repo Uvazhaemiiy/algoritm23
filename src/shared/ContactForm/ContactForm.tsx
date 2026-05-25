@@ -42,6 +42,12 @@ export const ContactForm: FC<ContactFormProps> = ({ subject, onSuccess }) => {
       const rawText = await response.text()
       const contentType = response.headers.get('content-type') || ''
 
+      if (rawText.trim().startsWith('<?php')) {
+        throw new Error(
+          'PHP на хостинге не выполняется. В панели NetAngels переключите сайт с «Статический» на «PHP» (хостинг → контейнер → сайт → тип сайта). Либо напишите на info@algoritm23.net'
+        )
+      }
+
       if (contentType.includes('text/html') || rawText.trim().startsWith('<!')) {
         throw new Error('Сервер формы не настроен. Напишите на info@algoritm23.net')
       }
@@ -50,7 +56,7 @@ export const ContactForm: FC<ContactFormProps> = ({ subject, onSuccess }) => {
       try {
         data = rawText ? JSON.parse(rawText) : {}
       } catch {
-        throw new Error('Сервер вернул некорректный ответ')
+        throw new Error('Сервер вернул некорректный ответ. Напишите на info@algoritm23.net')
       }
 
       if (!response.ok) {

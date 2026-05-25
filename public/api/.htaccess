@@ -1,0 +1,5 @@
+# Выполнять PHP-скрипты в этой папке (для хостинга с Apache + PHP)
+<IfModule mime_module>
+  AddHandler application/x-httpd-php .php
+  AddType application/x-httpd-php .php
+</IfModule>
