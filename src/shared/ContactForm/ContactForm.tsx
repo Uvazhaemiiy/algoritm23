@@ -5,7 +5,7 @@ type ContactFormProps = {
   onSuccess?: () => void
 }
 
-const API_URL = process.env.REACT_APP_API_URL || '/api'
+const API_URL = process.env.REACT_APP_API_URL || '/api/contact.php'
 
 export const ContactForm: FC<ContactFormProps> = ({ subject, onSuccess }) => {
   const [fullName, setFullName] = useState('')
@@ -26,7 +26,7 @@ export const ContactForm: FC<ContactFormProps> = ({ subject, onSuccess }) => {
     setSubmitting(true)
 
     try {
-      const response = await fetch(`${API_URL}/contact`, {
+      const response = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -39,7 +39,19 @@ export const ContactForm: FC<ContactFormProps> = ({ subject, onSuccess }) => {
         })
       })
 
-      const data = await response.json().catch(() => ({}))
+      const rawText = await response.text()
+      const contentType = response.headers.get('content-type') || ''
+
+      if (contentType.includes('text/html') || rawText.trim().startsWith('<!')) {
+        throw new Error('Сервер формы не настроен. Напишите на info@algoritm23.net')
+      }
+
+      let data: { error?: string; ok?: boolean } = {}
+      try {
+        data = rawText ? JSON.parse(rawText) : {}
+      } catch {
+        throw new Error('Сервер вернул некорректный ответ')
+      }
 
       if (!response.ok) {
         throw new Error(data.error || 'Не удалось отправить заявку')

@@ -5,3 +5,5 @@ dist
 .env
 server/.env
 server/node_modules
+public/api/config.php
+build/api/config.php
