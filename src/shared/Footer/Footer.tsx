@@ -15,7 +15,7 @@ export const Footer = () => (
            </p>
            <div className="mx-auto mt-4 mb-3 h-px w-16 max-w-full bg-gray-500/60" aria-hidden="true" />
            <p className="text-sm text-gray-400">
-             62.01 Разработка компьютерного программного обеспечения
+             ОКВЭД 62.01 Разработка компьютерного программного обеспечения
            </p>
          </div>
        </div>
